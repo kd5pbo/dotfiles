@@ -1,0 +1,18 @@
+# $OpenBSD: dot.profile,v 1.4 2005/02/16 06:56:57 matthieu Exp $
+#
+# sh/ksh initialization
+
+export PATH HOME TERM
+export PS1="[\\u@\\h:\\w]\\\$ " 
+export PAGER=less
+export EDITOR=vim
+set -o emacs
+export PKG_PATH=http://mirror.esc7.net/pub/OpenBSD/$(uname -r)/packages/$(uname -p)/
+export GOROOT=$HOME/usr/local/go
+export GOPATH=$HOME/go
+export SPRUNGE="| curl -s -F 'sprunge=<-' http://sprunge.us"
+export CGO_ENABLED=0
+export PATH=$HOME/bin:$GOROOT/bin:$GOPATH/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:/usr/games
+sprunge() {
+        curl -F 'sprunge=<-' http://sprunge.us
+}
