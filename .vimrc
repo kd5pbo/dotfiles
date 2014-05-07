@@ -1,0 +1,28 @@
+set nocompatible "Enable cool things
+syntax on "Syntax highlighting
+set number "Line numbers
+filetype plugin indent on "Read indentation plugins per filetype
+set ruler "Handy line at the bottom
+set title "Set terminal title to filename
+set expandtab "Use spaces instead of tabs
+set incsearch "Highlight first matches of searches while typing.
+set hlsearch "Highlight all matches
+"Toggle line numbers
+nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
+">80 Column notification
+if exists('+colorcolumn')
+  set colorcolumn=80
+else
+  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
+set backspace=indent,eol,start
+
+""" Python specific """
+"autocmd FileType python set complete+=k~/.vim/syntax/python.vim isk+=.,(
+
+""" Go specific """
+filetype off
+filetype plugin indent off
+set runtimepath+=$GOROOT/misc/vim
+filetype plugin indent on
+syntax on
