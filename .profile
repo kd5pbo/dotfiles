@@ -8,11 +8,15 @@ export PAGER=less
 export EDITOR=vim
 set -o emacs
 export PKG_PATH=http://mirror.esc7.net/pub/OpenBSD/$(uname -r)/packages/$(uname -p)/
+export GOOS=openbsd
+export GOACH=amd64
 export GOROOT=$HOME/usr/local/go
 export GOPATH=$HOME/go
-export SPRUNGE="| curl -s -F 'sprunge=<-' http://sprunge.us"
 export CGO_ENABLED=0
+export SPRUNGE="| curl -s -F 'sprunge=<-' http://sprunge.us"
 export PATH=$HOME/bin:$GOROOT/bin:$GOPATH/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:/usr/games
 sprunge() {
         curl -F 'sprunge=<-' http://sprunge.us
 }
+
+alias pst='dtpstree -alptu'
