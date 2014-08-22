@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/Users/stuart/VirtualBox VMs/xfer'
 let g:netrw_dirhist_2='/home/stuart/psh'
 let g:netrw_dirhist_3='/home/stuart/go/src/dcmh'
@@ -8,3 +8,4 @@ let g:netrw_dirhist_5='/home/stuart/go/src/code.google.com/p/safchatous'
 let g:netrw_dirhist_6='/home/stuart/go/src/github.com/kd5pbo/safchatous'
 let g:netrw_dirhist_7='/home/stuart/go/src/github.com/kd5pbo/onewaymirror/.git'
 let g:netrw_dirhist_8='/Users/stuart/.vim'
+let g:netrw_dirhist_9='/home/stuart/usr'
