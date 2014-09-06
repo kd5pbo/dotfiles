@@ -13,7 +13,7 @@ export GOACH=amd64
 export GOROOT=$HOME/usr/local/go
 export GOPATH=$HOME/go
 export CGO_ENABLED=0
-export SPRUNGE="| curl -s -F 'sprunge=<-' http://sprunge.us"
+#export SPRUNGE="| curl -s -F 'sprunge=<-' http://sprunge.us"
 export PATH=$HOME/bin:$GOROOT/bin:$GOPATH/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:/usr/games
 sprunge() {
         curl -F 'sprunge=<-' http://sprunge.us
