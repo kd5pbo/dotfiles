@@ -1,3 +1,16 @@
+""" Vundle """
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'fatih/vim-go'
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+
+"" Misc. Config """
 set nocompatible "Enable cool things
 syntax on "Syntax highlighting
 set number "Line numbers
@@ -21,8 +34,8 @@ set backspace=indent,eol,start
 "autocmd FileType python set complete+=k~/.vim/syntax/python.vim isk+=.,(
 
 """ Go specific """
-filetype off
-filetype plugin indent off
-set runtimepath+=$GOROOT/misc/vim
-filetype plugin indent on
-syntax on
+"filetype off
+"filetype plugin indent off
+"set runtimepath+=$GOROOT/misc/vim
+"filetype plugin indent on
+"syntax on
