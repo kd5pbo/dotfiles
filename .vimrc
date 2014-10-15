@@ -39,3 +39,4 @@ set backspace=indent,eol,start
 "set runtimepath+=$GOROOT/misc/vim
 "filetype plugin indent on
 "syntax on
+"let g:go_fmt_fail_silently = 1
