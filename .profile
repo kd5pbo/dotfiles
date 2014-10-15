@@ -20,3 +20,12 @@ sprunge() {
 }
 
 alias pst='dtpstree -alptu'
+exits() {
+        echo -e "code\tline"
+        grep -n Exit $1 | perl -ne '
+        if (/(\d+).*Exit\(-(\d+)\).*/){
+                print "$2\t$1\t";
+                /\t*(\\\\)?\t*(.*)/;
+                print "$2\n";
+        }' | sort -n
+}
