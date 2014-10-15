@@ -25,7 +25,7 @@ exits() {
         grep -n Exit $1 | perl -ne '
         if (/(\d+).*Exit\(-(\d+)\).*/){
                 print "$2\t$1\t";
-                /\t*(\\\\)?\t*(.*)/;
+                /^\d+:\t*(\\\\)?\t*(.*)/;
                 print "$2\n";
         }' | sort -n
 }
