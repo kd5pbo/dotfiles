@@ -8,17 +8,20 @@ export PAGER=less
 export EDITOR=vim
 set -o emacs
 export PKG_PATH=http://mirror.esc7.net/pub/OpenBSD/$(uname -r)/packages/$(uname -p)/
-export GOOS=openbsd
-export GOACH=amd64
-export GOROOT=$HOME/usr/local/go
+export GOROOT=$HOME/usr/go
 export GOPATH=$HOME/go
 export CGO_ENABLED=0
-#export SPRUNGE="| curl -s -F 'sprunge=<-' http://sprunge.us"
 export PATH=$HOME/bin:$GOROOT/bin:$GOPATH/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:/usr/games
 sprunge() {
         curl -F 'sprunge=<-' http://sprunge.us
 }
 
+# TODO: Make OS-specific dotfiles?
+
+# OS-specific .profile
+. $HOME/.dotfiles/profile.$(uname -s)
+export GOOS=openbsd
+export GOACH=amd64
 alias pst='dtpstree -alptu'
 exits() {
         echo -e "code\tline"
@@ -29,3 +32,8 @@ exits() {
                 print "$2\n";
         }' | sort -n
 }
+
+# Include settings specific to local machine.  Should be last line
+if [[ -f $HOME/.profile.local ]]; then
+        . $HOME/.profile.local
+fi
