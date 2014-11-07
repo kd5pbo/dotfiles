@@ -1,0 +1,20 @@
+#!/bin/ksh
+# OpenBSD-specific .profile
+
+# GO OS and Arch, shouldn't be needed these days
+#export GOOS=openbsd
+#export GOACH=amd64
+
+# pstree, nicely formatted
+alias pst='dtpstree -alptu'
+
+# Work out all the return/exit values in go code
+exits() {
+        echo -e "code\tline"
+        grep -n Exit $1 | perl -ne '
+        if (/(\d+).*Exit\(-(\d+)\).*/){
+                print "$2\t$1\t";
+                /^\d+:\t*(\\\\)?\t*(.*)/;
+                print "$2\n";
+        }' | sort -n
+}
