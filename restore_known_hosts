@@ -1,0 +1,46 @@
+#!/bin/sh
+#
+# restore_known_hosts
+# Script to decrypt and restore the ssh known_hosts file using ssh keys
+# by J. Stuart McMurray
+# created 20141107
+# last modified 20141107
+
+# Asumptions:
+#  Files:
+#   $HOME/.ssh/id_rsa
+#   $HOME/.ssh/known_hosts
+#   $HOME/.dotfiles/.ssh/known_hosts
+
+
+set umask 177 # A bit of security
+set -e # Don't continue past errors
+
+
+# Program to remove temporary files, srm, or rm if srm isn't around
+if $(which srm >/dev/null 2>&1); then
+        RM=$(which srm)
+else
+        RM=$(which rm)
+fi
+echo rm is $RM
+
+# Temporary file for decrypted key
+KEY=$(mktemp -t $$) # The key
+
+# Other filenames, for brevity
+OUTF=$HOME/.ssh/known_hosts- # File to decrypt
+INF=$HOME/.dotfiles/.ssh/known_hosts # Output file
+PRVK=$HOME/.ssh/id_rsa # Standard SSH private key
+
+# Extract key from input file and decrypt
+dd if=$INF bs=256 count=1 | openssl rsautl -decrypt -inkey $PRVK > $KEY
+dd if=$INF bs=256 count=1 skip=1 | openssl rsautl -decrypt -inkey $PRVK >> $KEY
+echo Recovered encryption key: $KEY
+
+# Decrypt the known_hosts
+dd if=$INF bs=256 skip=2 | openssl enc -d -aes-256-cbc -pass file:$KEY > $OUTF
+echo Decrypted $INF to $OUTF
+
+# Clean up
+$RM $KEY

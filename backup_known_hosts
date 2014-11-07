@@ -1,0 +1,52 @@
+#!/bin/sh
+#
+# backup_known_hosts
+# Script to encrypt and back up the ssh known_hosts file using ssh keys
+# by J. Stuart McMurray
+# created 20141107
+# last modified 20141107
+
+# Asumptions:
+#  Files:
+#   $HOME/.ssh/known_hosts
+#   $HOME/.dotfiles/.ssh/known_hosts
+#   $HOME/.dotfiles/.ssh/id_rsa.pub.pem (PKCS8, from id_rsa.pub)
+
+set umask 177 # A bit of security
+set -e # Don't continue past errors
+
+
+# Program to remove temporary files, srm, or rm if srm isn't around
+if $(which srm >/dev/null 2>&1); then
+        RM=$(which srm)
+else
+        RM=$(which rm)
+fi
+echo rm is $RM
+
+# Make a temporary file for the key
+KEY=$(mktemp -t $$) # The key
+echo Encryption key: $KEY
+
+# Other filenames, for brevity
+INF=$HOME/.ssh/known_hosts # File to encrypt
+OUTF=$HOME/.dotfiles/.ssh/known_hosts # Output file
+PUBK=$HOME/.dotfiles/.ssh/id_rsa.pub.pem # Public key in PKCS8 format
+# This can be made with:
+# ssh-keygen -e -f $HOME/.ssh/id_rsa.pub -m PKCS8 > $HOME/.ssh/id_rsa.pub.pem
+
+# Truncate the output file
+>$OUTF
+
+# Make the key, and store it, encrypted in two halves, in the output file
+for i in {1..2}; do
+        openssl rand 128 | tee -a $KEY | openssl rsautl -encrypt -inkey $PUBK -pubin >> $OUTF
+        echo Made key half $i/2
+done
+
+# Encrypt the file
+openssl enc -aes-256-cbc -salt -in $INF -pass file:$KEY >> $OUTF
+echo Encrypted $INF to $OUTF
+
+# Remove the temporary file
+$RM $KEY
