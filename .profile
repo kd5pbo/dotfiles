@@ -20,18 +20,6 @@ sprunge() {
 
 # OS-specific .profile
 . $HOME/.dotfiles/profile.$(uname -s)
-export GOOS=openbsd
-export GOACH=amd64
-alias pst='dtpstree -alptu'
-exits() {
-        echo -e "code\tline"
-        grep -n Exit $1 | perl -ne '
-        if (/(\d+).*Exit\(-(\d+)\).*/){
-                print "$2\t$1\t";
-                /^\d+:\t*(\\\\)?\t*(.*)/;
-                print "$2\n";
-        }' | sort -n
-}
 
 # Include settings specific to local machine.  Should be last line
 if [[ -f $HOME/.profile.local ]]; then
