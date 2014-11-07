@@ -1,0 +1,62 @@
+#!/bin/sh
+# sshcrypt
+# script to encrypt/decrypt stdin/out with ssh keys
+# by J. Stuart McMurray
+# created 20141107
+# last modified 20141107
+
+# Heavily based on https://github.com/twe4ked/catacomb/blob/master/bin/catacomb
+
+# Usage statement if the user goofs
+if [[ -z $1 ]] || ! \
+        ([[ "x${1}x" == "x-ex" ]] || [[ "x${1}x" == "x-dx" ]]); then
+        echo "Usage: $0 < -e [publickeyfile] | -d [keyfile] >" >&2
+        echo >&2
+        echo "Encrypts/Decrypts data to/from stdin/stdout." >&2
+        echo "The public key file can be converted from " | tr -d "\n" >&2
+        echo "an existing public ssh key:" >&2
+        echo >&2
+        echo "cd $HOME/.ssh; ssh-keygen -f id_rsa.pub " | tr -d "\n" >&2
+        echo "-e -m PKCS8 > id_rsa.pem" >&2
+        echo >&2
+        echo "id_?sa.pub or a line from authorized_keys will also work." >&2
+        echo "If the publickeyfile or keyfile are not "| tr -d "\n" >&2
+        echo "$HOME/.ssh will be searched for one." >&2
+        exit 1
+fi
+
+# Use the provided file, if one was provided
+FILE=$2
+
+case $1 in
+        -e)
+                if [[ -z $FILE ]]; then
+                        FILE=$(find $HOME/.ssh/id*sa.pem | head -n 1)
+                        if [[ -z $FILE ]]; then
+                                echo "Could not find public key file." >&2
+                                echo
+                                $0 --
+                                exit 2
+                        fi
+                        echo Using public key from $FILE. >&2
+                fi
+
+                # Encrypt data, base64-encode, print to stdout
+                openssl rsautl -encrypt -pubin -inkey $FILE -ssl \
+                        | openssl base64 -A
+                ;;
+        -d)
+                if [[ -z $FILE ]]; then
+                        FILE=$(find $HOME/.ssh/id*sa | head -n 1)
+                        if [[ -z $FILE ]]; then
+                                echo "Could not find key file." >&2
+                                echo
+                                $0 --
+                                exit 3
+                        fi
+                        echo Using $FILE >&2
+                fi
+                openssl base64 -d -A \
+                        | openssl rsautl -decrypt -inkey $FILE
+                ;;
+esac
