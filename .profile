@@ -16,10 +16,15 @@ sprunge() {
         curl -F 'sprunge=<-' http://sprunge.us
 }
 
-# TODO: Make OS-specific dotfiles?
+# Use srm if we have it
+if which srm >/dev/null 2>&1; then
+        alias rm=srm
+fi
 
 # OS-specific .profile
-. $HOME/.dotfiles/profile.$(uname -s)
+if [[ -f $HOME/.dotfiles/profile.$(uname -s) ]]; then
+        . $HOME/.dotfiles/profile.$(uname -s)
+fi
 
 # Include settings specific to local machine.  Should be last line
 if [[ -f $HOME/.profile.local ]]; then
