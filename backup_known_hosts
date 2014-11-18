@@ -19,6 +19,8 @@ set -e # Don't continue past errors
 # Program to remove temporary files, srm, or rm if srm isn't around
 if $(which srm >/dev/null 2>&1); then
         RM=$(which srm)
+elif [[ $(uname -s) == "OpenBSD" ]]; then
+        RM="$(which rm) -P"
 else
         RM=$(which rm)
 fi
