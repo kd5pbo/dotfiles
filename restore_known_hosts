@@ -26,7 +26,7 @@ fi
 echo rm is $RM
 
 # Temporary file for decrypted key
-KEY=$(mktemp -t $$) # The key
+KEY=$(mktemp -t XXXXXX) # The key
 
 # Other filenames, for brevity
 OUTF=$HOME/.ssh/known_hosts- # File to decrypt
