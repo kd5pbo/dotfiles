@@ -29,7 +29,7 @@ echo rm is $RM
 KEY=$(mktemp -t XXXXXX) # The key
 
 # Other filenames, for brevity
-OUTF=$HOME/.ssh/known_hosts- # File to decrypt
+OUTF=$HOME/.ssh/known_hosts # File to decrypt
 INF=$HOME/.dotfiles/.ssh/known_hosts # Output file
 PRVK=$HOME/.ssh/id_rsa # Standard SSH private key
 
