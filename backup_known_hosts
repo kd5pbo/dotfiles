@@ -4,7 +4,7 @@
 # Script to encrypt and back up the ssh known_hosts file using ssh keys
 # by J. Stuart McMurray
 # created 20141107
-# last modified 20141107
+# last modified 20141118
 
 # Asumptions:
 #  Files:
