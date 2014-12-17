@@ -1,4 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/home/stuart/go/src/github.com/kd5pbo/threadsafe/tsmap'
-let g:netrw_dirhist_2='/home/stuart/go/src/github.com/kd5pbo/csvcol'
+let g:netrw_dirhist_2='/Users/stuart/Desktop'
+let g:netrw_dirhist_3='/Users/stuart/Library/Application Support/Prison Architect'
+let g:netrw_dirhist_4='/Users/stuart/Library/Application Support/Prison Architect/Campaign'
+let g:netrw_dirhist_5='/home/stuart/go/src/github.com/kd5pbo/threadsafe/tsmap'
+let g:netrw_dirhist_6='/home/stuart/go/src/github.com/kd5pbo/csvcol'
