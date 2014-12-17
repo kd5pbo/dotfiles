@@ -22,3 +22,8 @@ exits() {
                 print "$2\n";
         }' | sort -n
 }
+
+# Get numeric return values
+returns() {
+        egrep -o 'return -?[[:digit:]]+' $1 | cut -f2 -d ' ' | sort -rn
+}
