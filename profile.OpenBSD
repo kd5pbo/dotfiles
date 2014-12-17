@@ -8,6 +8,10 @@
 # pstree, nicely formatted
 alias pst='dtpstree -alptu'
 
+# Set up history
+export HISTFILE=$HOME/.sh_history
+export HISTSIZE=65535
+
 # Work out all the return/exit values in go code
 exits() {
         echo -e "code\tline"
@@ -17,4 +21,9 @@ exits() {
                 /^\d+:\t*(\\\\)?\t*(.*)/;
                 print "$2\n";
         }' | sort -n
+}
+
+# Get numeric return values
+returns() {
+        egrep -o 'return -?[[:digit:]]+' $1 | cut -f2 -d ' ' | sort -rn
 }

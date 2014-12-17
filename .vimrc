@@ -29,6 +29,9 @@ else
   au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
 set backspace=indent,eol,start
+" Arrows move up and down by display line in insert mode
+inoremap <Down> <C-o>g<Down>
+inoremap <Up> <C-o>g<Up>
 
 """ Python specific """
 "autocmd FileType python set complete+=k~/.vim/syntax/python.vim isk+=.,(

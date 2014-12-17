@@ -3,7 +3,8 @@
 # sh/ksh initialization
 
 export PATH HOME TERM
-export PS1="[\\u@\\h:\\w]\\\$ " 
+#export PS1="[\\u@\\h:\\w]\\\$ " 
+export PS1='\[\e[34m\][\u@\h:\[\e[1m\]\w\[\e[22m\]]\$ \[\e[0m\]'
 export PAGER=less
 export EDITOR=vim
 set -o emacs
