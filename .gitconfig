@@ -1,0 +1,7 @@
+[user]
+	name = J. Stuart McMurray
+	email = kd5pbo@gmail.com
+[push]
+	default = simple
+[core]
+	excludesfile = ~/.gitignore
