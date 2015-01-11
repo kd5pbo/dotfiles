@@ -17,7 +17,7 @@ D=$HOME/.dotfiles
 cd $HOME
 
 # Files to symlink
-for F in .profile .vim .vimrc; do
+for F in .profile .vim .vimrc .gitconfig .gitignore; do
         # Make a backup
         if [[ -e $F ]]; then
                 echo $HOME/$F -> $HOME/$F.bak
