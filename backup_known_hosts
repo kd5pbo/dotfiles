@@ -27,7 +27,7 @@ fi
 echo rm is $RM
 
 # Make a temporary file for the key
-KEY=$(mktemp -t $$) # The key
+KEY=$(mktemp -t XXXXXX) # The key
 echo Encryption key: $KEY
 
 # Other filenames, for brevity
