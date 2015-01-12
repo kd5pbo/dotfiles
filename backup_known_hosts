@@ -31,8 +31,8 @@ KEY=$(mktemp -t XXXXXX) # The key
 echo Encryption key: $KEY
 
 # Other filenames, for brevity
-INF=$HOME/.ssh/known_hosts # File to encrypt
-OUTF=$HOME/.dotfiles/.ssh/known_hosts # Output file
+ INF=$HOME/.ssh/known_hosts # File to encrypt
+OUTF=$HOME/.dotfiles/.ssh/known_hosts.enc # Output file
 PUBK=$HOME/.dotfiles/.ssh/id_rsa.pub.pem # Public key in PKCS8 format
 # This can be made with:
 # ssh-keygen -e -f $HOME/.ssh/id_rsa.pub -m PKCS8 > $HOME/.ssh/id_rsa.pub.pem
@@ -41,7 +41,7 @@ PUBK=$HOME/.dotfiles/.ssh/id_rsa.pub.pem # Public key in PKCS8 format
 >$OUTF
 
 # Make the key, and store it, encrypted in two halves, in the output file
-for i in {1..2}; do
+for i in 1 2; do
         openssl rand 128 | tee -a $KEY | openssl rsautl -encrypt -inkey $PUBK -pubin >> $OUTF
         echo Made key half $i/2
 done
