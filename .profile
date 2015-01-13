@@ -31,3 +31,16 @@ fi
 if [[ -f $HOME/.profile.local ]]; then
         . $HOME/.profile.local
 fi
+
+# Push changed .ssh/known_hosts
+pushkh () {
+        cd $HOME/.dotfiles/ &&
+                ./backup_known_hosts &&
+                git commit -m "pushkh update" .ssh/known_hosts.enc &&
+                git push
+}
+pullkh () {
+        cd $HOME/.dotfiles/ &&
+                git pull &&
+                ./restore_known_hosts
+}
