@@ -11,6 +11,10 @@ set -e
 #   $HOME is set
 #   $HOME/.dotfiles is the directory containing the files to link
 
+# Get submodules
+git submodule init
+git submodule update
+
 # Where the dotfiles are
 D=$HOME/.dotfiles
 # Be in home for brevity
@@ -25,10 +29,6 @@ function backup {
         echo $SRC '->' $DST
         mv $SRC $DST
 }
-
-# Get submodules
-git submodule init
-git submodule update
 
 # Files to symlink
 for F in .profile .vim .vimrc .gitconfig .gitignore; do
