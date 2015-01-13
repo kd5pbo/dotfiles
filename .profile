@@ -27,11 +27,6 @@ if [[ -f $HOME/.dotfiles/profile.$(uname -s) ]]; then
         . $HOME/.dotfiles/profile.$(uname -s)
 fi
 
-# Include settings specific to local machine.  Should be last line
-if [[ -f $HOME/.profile.local ]]; then
-        . $HOME/.profile.local
-fi
-
 # Push changed .ssh/known_hosts
 pushkh () {
         cd $HOME/.dotfiles/ &&
@@ -44,3 +39,8 @@ pullkh () {
                 git pull &&
                 ./restore_known_hosts
 }
+
+# Include settings specific to local machine.  Should be last line
+if [[ -f $HOME/.profile.local ]]; then
+        . $HOME/.profile.local
+fi
