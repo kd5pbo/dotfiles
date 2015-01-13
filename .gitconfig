@@ -5,3 +5,5 @@
 	default = simple
 [core]
 	excludesfile = ~/.gitignore
+[alias]
+	pullall = "!f(){ git pull \"$@\" && git submodule update --init --recursive; }; f"

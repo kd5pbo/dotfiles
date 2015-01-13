@@ -26,6 +26,10 @@ function backup {
         mv $SRC $DST
 }
 
+# Get submodules
+git submodule init
+git submodule update
+
 # Files to symlink
 for F in .profile .vim .vimrc .gitconfig .gitignore; do
         # Make a backup
