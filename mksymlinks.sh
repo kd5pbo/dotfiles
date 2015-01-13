@@ -16,12 +16,21 @@ D=$HOME/.dotfiles
 # Be in home for brevity
 cd $HOME
 
+function backup {
+        local SRC=$1
+        local DST=$1.bak
+        if [[ -e $DST ]]; then
+                backup $DST
+        fi
+        echo $SRC '->' $DST
+        mv $SRC $DST
+}
+
 # Files to symlink
 for F in .profile .vim .vimrc .gitconfig .gitignore; do
         # Make a backup
         if [[ -e $F ]]; then
-                echo $HOME/$F -> $HOME/$F.bak
-                mv $HOME/$F $HOME/$F.bak
+                backup $F
         fi
         ln -s $D/$F
         ls -adl $F
