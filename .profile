@@ -29,15 +29,15 @@ alias gunz=gunzip
 #############
 # Push/Pull changed .ssh/known_hosts
 pushkh () {
-        cd $HOME/.dotfiles/ &&
+        (cd $HOME/.dotfiles/ &&
                 ./backup_known_hosts &&
                 git commit -m "pushkh update" .ssh/known_hosts.enc &&
-                git push
+                git push)
 }
 pullkh () {
-        cd $HOME/.dotfiles/ &&
+        (cd $HOME/.dotfiles/ &&
                 git pull &&
-                ./restore_known_hosts
+                ./restore_known_hosts)
 }
 # Send data to sprunge
 sprunge() {
