@@ -8,6 +8,11 @@
 # pstree, nicely formatted
 alias pst='dtpstree -alptu'
 
+# Alias rm to overwrite files by default
+if ! alias | egrep '^rm ' >/dev/null 2>&1; then
+        alias rm='rm -P '
+fi
+
 # Set up history
 export HISTFILE=$HOME/.sh_history
 export HISTSIZE=65535
