@@ -5,6 +5,13 @@
 #export GOOS=openbsd
 #export GOACH=amd64
 
+# Set up history
+export HISTFILE=$HOME/.sh_history
+export HISTSIZE=65535
+
+# Editor for fc
+export FCEDIT=vim
+
 # pstree, nicely formatted
 alias pst='dtpstree -alptu'
 
@@ -12,10 +19,6 @@ alias pst='dtpstree -alptu'
 if ! alias | egrep '^rm ' >/dev/null 2>&1; then
         alias rm='rm -P '
 fi
-
-# Set up history
-export HISTFILE=$HOME/.sh_history
-export HISTSIZE=65535
 
 # Work out all the return/exit values in go code
 exits() {
