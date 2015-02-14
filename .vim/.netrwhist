@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/home/stuart/go/src/github.com/kd5pbo/threadsafe/tsmap'
 let g:netrw_dirhist_2='/Users/stuart/Desktop'
 let g:netrw_dirhist_3='/Users/stuart/Library/Application Support/Prison Architect'
@@ -7,3 +7,4 @@ let g:netrw_dirhist_4='/Users/stuart/Library/Application Support/Prison Architec
 let g:netrw_dirhist_5='/home/stuart/go/src/github.com/kd5pbo/threadsafe/tsmap'
 let g:netrw_dirhist_6='/home/stuart/go/src/github.com/kd5pbo/csvcol'
 let g:netrw_dirhist_7='/home/stuart/go/src/github.com/kd5pbo/easylogger'
+let g:netrw_dirhist_8='/home/stuart/thriftiness/.git'
