@@ -12,6 +12,9 @@ export HISTSIZE=65535
 # Editor for fc
 export FCEDIT=vim
 
+# Set package download source
+export PKG_PATH=http://mirror.esc7.net/pub/OpenBSD/$(uname -r)/packages/$(uname -p)/
+
 # pstree, nicely formatted
 alias pst='dtpstree -alptu'
 

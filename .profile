@@ -8,7 +8,6 @@ export PS1='\[\e[34m\][\u@\h:\[\e[1m\]\w\[\e[22m\]]\$ \[\e[0m\]'
 export PAGER=less
 export EDITOR=vim
 set -o emacs
-export PKG_PATH=http://mirror.esc7.net/pub/OpenBSD/$(uname -r)/packages/$(uname -p)/
 export GOROOT=$HOME/usr/go
 export GOPATH=$HOME/go
 export CGO_ENABLED=0
